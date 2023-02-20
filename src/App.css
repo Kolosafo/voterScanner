@@ -4,6 +4,7 @@
   padding: 2rem;
   text-align: center;
   font-size: 1.2vw;
+  overflow-x: hidden;
 }
 
 .card {
@@ -14,8 +15,7 @@
   color: #888;
 }
 
-
-.App{
+.App {
   display: flex;
   flex-direction: column;
   justify-content: center;

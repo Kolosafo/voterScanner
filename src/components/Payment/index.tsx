@@ -10,7 +10,7 @@ const Payment = () => {
     payItemID: "Default_Payable_MX81866",
     customerEmail: "johndoe@gmail.com",
     redirectURL: "http://127.0.0.1:5173/",
-    text: "Pay Now",
+    text: "Download",
     mode: "LIVE",
     transactionReference: Date.now().toString(),
     amount: "100000",
@@ -19,9 +19,13 @@ const Payment = () => {
       height: "40px",
       border: "none",
       color: "#fff",
+      fontSize: "18px",
       backgroundColor: "#ff0000",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
     },
-    callback: (response) => {
+    callback: (response: any) => {
       console.log("response: ", response);
     },
   };

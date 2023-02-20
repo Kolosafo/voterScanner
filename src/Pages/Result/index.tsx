@@ -10,9 +10,24 @@ import { handleGetDesign } from "../../utils/api";
 import { IoMdArrowBack } from "react-icons/io";
 const Result = () => {
   const { party } = useParams();
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<ResultType | null>(null);
 
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+  const priceStyle = {
+    fontSize: "3vw",
+  };
   const navigate = useNavigate();
   useEffect(() => {
     console.log(croppedProfilePicture);
@@ -86,15 +101,16 @@ const Result = () => {
               <img
                 src={result.profile_img}
                 alt="img"
-                style={{ width: "20%" }}
+                style={{ width: isMobile ? "65%" : "20%" }}
               />
               <div style={{ display: "flex" }}>
-                <h3>N500</h3>
+                <h3 style={priceStyle}>N500</h3>
                 <h3
                   style={{
                     opacity: "0.3",
                     textDecoration: "line-through",
                     marginLeft: "20px",
+                    fontSize: "3vw",
                   }}
                 >
                   N2000
@@ -111,14 +127,15 @@ const Result = () => {
               }}
             >
               <h4 style={{ fontSize: "5vw" }}>Profile Banner</h4>
-              <img src={result.banner_img} alt="img" style={{ width: "40%" }} />
+              <img src={result.banner_img} alt="img" style={{ width: isMobile ? "90%" : "40%"}} />
               <div style={{ display: "flex" }}>
-                <h3>N500</h3>
+                <h3 style={priceStyle}>N500</h3>
                 <h3
                   style={{
                     opacity: "0.3",
                     textDecoration: "line-through",
                     marginLeft: "20px",
+                    fontSize: "3vw",
                   }}
                 >
                   N2000
@@ -137,7 +154,7 @@ const Result = () => {
             }}
           >
             <h1>Total:</h1>
-            <h2 style={{ color: "cyan" }}>N1,000</h2>
+            <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,000</h2>
             <Payment />
           </div>
         </>

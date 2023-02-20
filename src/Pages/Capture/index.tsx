@@ -1,19 +1,36 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import Webcam from "react-webcam";
 import Scanner from "../../components/Scanner";
 import thumb_back_with_arrow from "../../assets/images/thumb-back.png";
 import { MdOutlineCamera } from "react-icons/md";
 import { CaptureBtn } from "./style";
 const Capture = () => {
+  const [width, setWidth] = useState<number>(window.innerWidth);
   const [thumbPrint, setThumbPrint] = useState("");
   const [startCapture, setStartCapture] = useState(false);
   const [finger, setFinger] = useState("");
-  const webcamRef = useRef(null);
+
+  function handleWindowSizeChange() {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  const isMobile = width <= 768;
+  const webcamRef = useRef<any>(null);
   const capture = useCallback(() => {
     const imageSrc = webcamRef.current
       ? setThumbPrint(webcamRef.current.getScreenshot())
       : null;
   }, [webcamRef]);
+
+  const videoConstraints = {
+    facingMode: isMobile ? { exact: "environment" } : "user",
+  };
   return (
     <>
       {!startCapture && (
@@ -25,7 +42,7 @@ const Capture = () => {
             alignItems: "center",
           }}
         >
-          <h3 style={{ textTransform: "capitalize " }}>
+          <h3 style={{ textTransform: "capitalize", fontSize: "3vw" }}>
             Please show us the mark that indicates you voted
           </h3>
           <img src={thumb_back_with_arrow} alt="" width={"70%"} />
@@ -42,7 +59,11 @@ const Capture = () => {
             alignItems: "center",
           }}
         >
-          <Webcam ref={webcamRef} />
+          <Webcam
+            ref={webcamRef}
+            videoConstraints={videoConstraints}
+            height={isMobile ? 220 : 500}
+          />
           <button
             onClick={capture}
             style={{

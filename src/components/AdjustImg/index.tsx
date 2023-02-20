@@ -22,7 +22,7 @@ const AdjustProfile: FC<Props> = ({
   if (!isModalVisible) {
     return null;
   }
-  const editor = useRef(null);
+  const editor = useRef<any>(null);
 
   const handleCropPfileUrl = (img_url: string) =>
     setCroppedUserProfile(img_url);
@@ -54,7 +54,7 @@ const AdjustProfile: FC<Props> = ({
         <button
           style={{ margin: "10px 0px" }}
           onClick={() => {
-            if (editor) {
+            if (editor.current) {
               //   const canvas = editor.current.getImage()
               const canvasScaled = editor.current.getImage().toDataURL() 
               handleCropPfileUrl(canvasScaled);
