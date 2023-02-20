@@ -10,7 +10,7 @@ const Payment = () => {
     payItemID: "Default_Payable_MX81866",
     customerEmail: "johndoe@gmail.com",
     redirectURL: "http://127.0.0.1:5173/",
-    text: "Download",
+    text: "Download Original",
     mode: "LIVE",
     transactionReference: Date.now().toString(),
     amount: "100000",

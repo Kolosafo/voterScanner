@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Payment from "../../components/Payment";
+import { handleDownloadDesigns } from "./downloadOriginal";
 import { handleGetDesign } from "../../utils/api";
 // import { IoMdArrowBack } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io";
@@ -14,6 +15,15 @@ const Result = () => {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<ResultType | null>(null);
 
+  const handleDownloadAll = () => {
+    result
+      ? handleDownloadDesigns(
+          result.original.profile_img,
+          result.original.banner_img,
+          result.original.post_img
+        )
+      : null;
+  };
   function handleWindowSizeChange() {
     setWidth(window.innerWidth);
   }
@@ -99,7 +109,7 @@ const Result = () => {
             >
               <h4 style={{ fontSize: "5vw" }}>Profile Picture</h4>
               <img
-                src={result.profile_img}
+                src={result.watermarked.profile_img}
                 alt="img"
                 style={{ width: isMobile ? "65%" : "20%" }}
               />
@@ -126,8 +136,41 @@ const Result = () => {
                 alignItems: "center",
               }}
             >
-              <h4 style={{ fontSize: "5vw" }}>Profile Banner</h4>
-              <img src={result.banner_img} alt="img" style={{ width: isMobile ? "90%" : "40%"}} />
+              <h4 style={{ fontSize: "5vw" }}>Twitter Profile Banner</h4>
+              <img
+                src={result.watermarked.banner_img}
+                alt="img"
+                style={{ width: isMobile ? "90%" : "40%" }}
+              />
+              <div style={{ display: "flex" }}>
+                <h3 style={priceStyle}>N500</h3>
+                <h3
+                  style={{
+                    opacity: "0.3",
+                    textDecoration: "line-through",
+                    marginLeft: "20px",
+                    fontSize: "3vw",
+                  }}
+                >
+                  N2000
+                </h3>
+              </div>
+            </div>
+            <hr style={{ width: "100%" }} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h4 style={{ fontSize: "5vw" }}>Post Design</h4>
+              <img
+                src={result.watermarked.post_img}
+                alt="img"
+                style={{ width: isMobile ? "90%" : "40%" }}
+              />
               <div style={{ display: "flex" }}>
                 <h3 style={priceStyle}>N500</h3>
                 <h3
@@ -154,8 +197,9 @@ const Result = () => {
             }}
           >
             <h1>Total:</h1>
-            <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,000</h2>
+            <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,500</h2>
             <Payment />
+            {/* <button onClick={handleDownloadAll}>Download All</button> */}
           </div>
         </>
       )}

@@ -1,7 +1,18 @@
 import axios from "axios";
-export interface ResultType {
+
+export interface Watermarked {
   profile_img: string;
   banner_img: string;
+  post_img: string;
+}
+export interface original {
+  profile_img: string;
+  banner_img: string;
+  post_img: string;
+}
+export interface ResultType {
+  watermarked: Watermarked;
+  original: original;
 }
 export const handleGetDesign = async (
   img_url: string,
@@ -16,8 +27,8 @@ export const handleGetDesign = async (
   };
   const response = await axios.post(`http://127.0.0.1:8000/design/`, data);
   setResult({
-    profile_img: response.data.profile_img,
-    banner_img: response.data.banner_img,
+    watermarked: response.data.watermarked,
+    original: response.data.original
   });
 };
 
