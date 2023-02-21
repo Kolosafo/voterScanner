@@ -23,7 +23,7 @@ const NameInput: FC<Props> = ({ setUploadProfile }) => {
   };
   return (
     <div style={{ marginTop: "70px", fontSize: "2vw" }}>
-      <h4>Enter Your Name</h4>
+      <h4 style={{ fontSize: "20px" }}>Enter Your Name</h4>
       {errorMsg && (
         <span style={{ fontSize: "12px", color: "red" }}> {errorMsg}</span>
       )}

@@ -45,6 +45,7 @@ export const Nav = styled.nav`
     transform:  ${(props: Props) => (props.open ? "translateX(-70vw)" : "translateX(0)")};
     display:  ${(props: Props) => (props.open ? "block" : "none")};
     font-size: 4vw;
+    z-index: 10;
   }
 `;
 

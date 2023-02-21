@@ -30,4 +30,5 @@ export const LoginBtn = styled.button`
 
 export const marginAdd = {
     marginBottom: '10px',
+    padding: "7px 20px"
   };

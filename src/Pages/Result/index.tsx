@@ -9,6 +9,7 @@ import { handleDownloadDesigns } from "./downloadOriginal";
 import { handleGetDesign } from "../../utils/api";
 // import { IoMdArrowBack } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io";
+import { ColorRing } from "react-loader-spinner";
 const Result = () => {
   const { party } = useParams();
   const [width, setWidth] = useState<number>(window.innerWidth);
@@ -91,7 +92,7 @@ const Result = () => {
         <IoMdArrowBack size={45} />
       </div>
       {loading && <Loading loading={loading} />}
-      {result && (
+      {result ? (
         <>
           <div
             style={{
@@ -207,12 +208,31 @@ const Result = () => {
                 to="/TOS"
                 style={{ color: "red", textDecoration: "underline" }}
               >
-                Terms of Use
+                Terms of Service
               </Link>
               .
             </span>
           </div>
         </>
+      ) : (
+        <div
+          style={{
+            height: "80vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <ColorRing
+            visible={true}
+            height="120"
+            width="120"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+        </div>
       )}
     </div>
   );

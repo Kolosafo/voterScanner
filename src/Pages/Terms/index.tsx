@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
           <IoMdArrowBack size={45} />
         </div>
         {/* <button onClick={() => toggleErrorModal()}>Toggle Show</button> */}
-        <h1 style={{ fontSize: "24px" }}>Terms Of Use</h1>
+        <h1 style={{ fontSize: "24px" }}>Terms Of Service</h1>
         <span style={{ fontSize: "16px" }}>
           By accessing or using this website, you agree to be bound by these
           Terms of Use. If you do not agree to these terms, please do not use

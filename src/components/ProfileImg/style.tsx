@@ -20,7 +20,7 @@ export const pulsate = keyframes`
 
 export const Container = styled.div`
   & .Typewriter {
-    font-size: 3vw;
+    font-size: 5vw;
     margin: 50px 0px;
   }
 `;

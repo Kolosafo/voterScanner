@@ -70,6 +70,7 @@ const ContactUs = () => {
                 alignSelf: "center",
                 backgroundColor: "darkslategray",
                 color: "whitesmoke",
+                fontSize: "18px",
               }}
               onClick={(e) => handleSend(e)}
             >
@@ -85,20 +86,20 @@ const ContactUs = () => {
               justifyContent: "center",
             }}
           >
-            <span>SUCCESS! THANKS FOR YOUR FEEDBACK!</span>
+            <span>SUCCESS! THANKS FOR CONTACTING US</span>
             <BsCheckCircle size={"200px"} color={"green"} />
             <a
               style={{ cursor: "pointer", color: "blue" }}
               onClick={() => setSuccess(false)}
             >
-              Post another feedback
+              Continue
             </a>
           </div>
         )}
       </Form>
 
-      <span style={{ textAlign: "center", color: "#A0A0A0", fontSize: "12px" }}>
-        Contact Us Directly - 
+      <span style={{ textAlign: "center", color: "#A0A0A0", fontSize: "14px" }}>
+        Contact Us Directly -
         <a
           style={{ fontWeight: "700", margin: "0px 5px" }}
           target="_blank"
