@@ -45,8 +45,8 @@ const ProfilePicture = () => {
       <div
         style={{
           position: "absolute",
-          top: "30px",
-          left: "40px",
+          top: "10px",
+          left: "15px",
           cursor: "pointer",
         }}
         onClick={() => {

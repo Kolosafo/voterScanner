@@ -32,10 +32,9 @@ const Parties = () => {
           style={{
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
           }}
         >
-          <h1 style={{ color: "white" }}>Labour Party</h1>
+          <h1 style={{ color: "white", marginBottom: "10px" }}>Labour Party</h1>
           <h2 style={{ color: "yellow" }}>Peter Obi</h2>
         </div>
         <img

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { ResultType } from "../../utils/api";
 import { croppedProfilePicture } from "../ProfilePicture";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Loading from "../../components/Loading";
 import Payment from "../../components/Payment";
@@ -78,8 +78,8 @@ const Result = () => {
       <div
         style={{
           position: "absolute",
-          top: "25px",
-          left: "35px",
+          top: "10px",
+          left: "15px",
           cursor: "pointer",
         }}
         onClick={() => {
@@ -198,8 +198,19 @@ const Result = () => {
           >
             <h1>Total:</h1>
             <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,500</h2>
+
             <Payment />
             {/* <button onClick={handleDownloadAll}>Download All</button> */}
+            <span style={{ marginTop: "15px", fontSize: "18px" }}>
+              By Clicking "Download Original", you agree to our{" "}
+              <Link
+                to="/TOS"
+                style={{ color: "red", textDecoration: "underline" }}
+              >
+                Terms of Use
+              </Link>
+              .
+            </span>
           </div>
         </>
       )}

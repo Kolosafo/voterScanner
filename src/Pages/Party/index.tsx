@@ -35,11 +35,11 @@ const Party = () => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "-20px",
+          marginTop: "-10px",
         }}
       >
         <IoMdFingerPrint size={"5vw"} color="lightgreen" />
-        <h2 style={{ marginLeft: "10px", fontSize: "5vw" }}>
+        <h2 style={{ marginLeft: "10px", fontSize: "4vw" }}>
           {votesVerified ? votesVerified.toLocaleString("en-US") : null}
         </h2>
       </div>
