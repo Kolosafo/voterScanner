@@ -5,7 +5,7 @@ import lp_logo from "../../assets/images/lp-img.png";
 import pdp_logo from "../../assets/images/pdp_logo.png";
 import apc_logo from "../../assets/images/apc_logo.png";
 import nnpp_logo from "../../assets/images/nnpp_logo.png";
-
+import Typewriter from "typewriter-effect";
 import peter_obi from "../../assets/images/peter-obi.png";
 import atiku from "../../assets/images/atiku.png";
 import tinubu from "../../assets/images/tinubu.png";
@@ -16,6 +16,17 @@ const Parties = () => {
 
   return (
     <Container>
+      <Typewriter
+        options={{
+          strings: ["Who are you with?", "Are you Obidient, a Jagaban, Atikulated or A New Nigerian?"],
+          autoStart: true,
+          delay: 100,
+          loop: true,
+        }}
+        onInit={(typewriter) => {
+          typewriter.pauseFor(3000).start();
+        }}
+      />
       <Party
         onClick={() => {
           navigate("/profile_picture/LP");

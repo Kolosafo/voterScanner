@@ -7,6 +7,19 @@ export const Container = styled.div`
   width: 90vw;
   /* border: 1px solid white; */
   align-self: flex-start;
+
+  & .Typewriter {
+    align-self: flex-start;
+    margin-left: 71px;
+    font-size: 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    & .Typewriter {
+      margin-left: 17px;
+      font-size: 10px;
+    }
+  }
 `;
 export const Party = styled.div`
   width: 90%;

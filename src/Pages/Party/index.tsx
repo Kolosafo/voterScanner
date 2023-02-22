@@ -13,7 +13,7 @@ const Party = () => {
   }, [votesVerified]);
   useEffect(() => {
     if (updateVote) {
-      console.log("instant updating");
+      // console.log("instant updating");
       handleGetViewCount(setVotesVerified);
       setUpdateVote(false);
     }
@@ -22,13 +22,13 @@ const Party = () => {
   useEffect(() => {
     setTimeout(() => {
       setUpdateVote(true);
-      console.log("After 5 mins updating");
+      // console.log("After 5 mins updating");
     }, 300000);
   }, []);
   return (
     <>
       <div>
-        <h1>VOTERS SCANNED</h1>
+        <h1>SUPPORTERS RECORDED</h1>
       </div>
       <div
         style={{

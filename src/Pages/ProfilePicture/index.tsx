@@ -51,7 +51,7 @@ const ProfilePicture = () => {
         }}
         onClick={() => {
           croppedProfilePicture.url = "";
-          navigate(`/party`);
+          navigate(`/`);
         }}
       >
         <IoMdArrowBack size={45} />

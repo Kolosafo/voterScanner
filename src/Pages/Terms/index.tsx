@@ -74,7 +74,7 @@ const PrivacyPolicy = () => {
           concerns about these Terms of Use. <h5>Refund Policy</h5> At Visual
           Splendor, we offer no refunds for our generated images and all refund
           requests will be rejected in compliance to this policy.
-          <Link to="/">
+          <Link to="/contact">
             <h5 style={{ color: "red" }}>Contact Us</h5>
           </Link>
         </span>

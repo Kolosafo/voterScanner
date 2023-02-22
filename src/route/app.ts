@@ -7,7 +7,7 @@ export interface AppRouteType {
 export const appRoutes: AppRouteType[] = [
   {
     to: "/",
-    element: Capture,
+    element: Party,
   },
   {
     to: "profile_picture/:party",
@@ -17,10 +17,10 @@ export const appRoutes: AppRouteType[] = [
     to: "result/:party",
     element: Result,
   },
-  {
-    to: "party/",
-    element: Party,
-  },
+  // {
+  //   to: "party/",
+  //   element: Party,
+  // },
   {
     to: "TOS/",
     element: Terms,

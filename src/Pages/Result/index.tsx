@@ -7,6 +7,8 @@ import Loading from "../../components/Loading";
 import Payment from "../../components/Payment";
 import { handleDownloadDesigns } from "./downloadOriginal";
 import { handleGetDesign } from "../../utils/api";
+import Typewriter from "typewriter-effect";
+
 // import { IoMdArrowBack } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io";
 import { ColorRing } from "react-loader-spinner";
@@ -16,6 +18,17 @@ const Result = () => {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<ResultType | null>(null);
 
+  const buttonStyle = {
+    width: "200px",
+    height: "40px",
+    border: "none",
+    color: "#fff",
+    fontSize: "18px",
+    backgroundColor: "#ff0000",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
   const handleDownloadAll = () => {
     result
       ? handleDownloadDesigns(
@@ -41,11 +54,11 @@ const Result = () => {
   };
   const navigate = useNavigate();
   useEffect(() => {
-    console.log(croppedProfilePicture);
+    // console.log(croppedProfilePicture);
     setTimeout(() => {
       croppedProfilePicture.url !== "" ||
       croppedProfilePicture.url ||
-      croppedProfilePicture.name! == "" ||
+      croppedProfilePicture.name !== "" ||
       croppedProfilePicture.name
         ? (setLoading(false),
           party
@@ -200,7 +213,7 @@ const Result = () => {
             <h1>Total:</h1>
             <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,500</h2>
 
-            <Payment />
+            <button style={buttonStyle}>Download Original</button>
             {/* <button onClick={handleDownloadAll}>Download All</button> */}
             <span style={{ marginTop: "15px", fontSize: "18px" }}>
               By Clicking "Download Original", you agree to our{" "}
@@ -221,6 +234,7 @@ const Result = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection: "column",
           }}
         >
           <ColorRing
@@ -231,6 +245,27 @@ const Result = () => {
             wrapperStyle={{}}
             wrapperClass="blocks-wrapper"
             colors={["#e15b64", "#f47e60", "#f8b26a", "#abbd81", "#849b87"]}
+          />
+          <Typewriter
+            options={{
+              strings: [
+                party === "LP"
+                  ? "Designing an Obidient Visual...."
+                  : party === "PDP"
+                  ? "Designing an Atikulated Visual...."
+                  : party === "APC"
+                  ? "Designing a Jagabany Visual...."
+                  : party === "NNPP"
+                  ? "Designing a New Nigerian Visual."
+                  : "HSDHASJHJDAHJ",
+              ],
+              autoStart: true,
+              delay: 100,
+              loop: true,
+            }}
+            onInit={(typewriter) => {
+              typewriter.pauseFor(3000).start();
+            }}
           />
         </div>
       )}
