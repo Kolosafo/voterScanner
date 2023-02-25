@@ -12,7 +12,7 @@ const NavMenu = () => {
       <Nav open={open}>
         <ul>
           <li>
-            <Link to="/party" style={{ color: "white" }}>
+            <Link to="/" style={{ color: "white" }}>
               Home
             </Link>
           </li>

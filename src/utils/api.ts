@@ -25,24 +25,46 @@ export const handleGetDesign = async (
   name: string,
   setResult: React.Dispatch<React.SetStateAction<ResultType | null>>
 ) => {
-  const getInsptQoute = await getIinspirtionalQoute();
+  console.log("I HAVE STARTED RUNNING");
+  // const getInsptQoute = await getIinspirtionalQoute();
+  // console.log("qoute", getInsptQoute);
+
   const data = {
     party: party,
     profile_img: img_url,
     name,
-    inspirationalQoute: getInsptQoute ? getInsptQoute : "",
+    // inspirationalQoute: getInsptQoute ? getInsptQoute : "",
   };
   // console.log("DESIGNING", name);
   try {
-    const response = await axios.post(
-      `https://twitter-img-generator.herokuapp.com/design/`,
-      data
-    );
-    setResult({
-      watermarked: response.data.watermarked,
-      original: response.data.original,
-    });
-    return;
+    fetch(`https://twitter-img-generator.herokuapp.com/design/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        console.log("MA SEE RESPONSE", response);
+        setResult({
+          watermarked: response.watermarked,
+          original: response.original,
+        });
+        return;
+      })
+      .catch((e) => {
+        if (retryGetDesign !== 1) {
+          handleGetDesign(img_url, party, name, setResult);
+          retryGetDesign += 1;
+        } else {
+          // Navigate to the Location.reload article by replacing this page
+          // window.location.replace("https://vislendor.com/");
+          alert(
+            `"Server Overload:" We are experiencing high traffic. Re-upload your image and try again, it should work.`
+          );
+        }
+      });
   } catch (err) {
     if (retryGetDesign !== 1) {
       handleGetDesign(img_url, party, name, setResult);
@@ -50,7 +72,9 @@ export const handleGetDesign = async (
     } else {
       // Navigate to the Location.reload article by replacing this page
       // window.location.replace("https://vislendor.com/");
-      alert(`"ERROR" ${err}`);
+      alert(
+        `"Server Overload:" We are experiencing high traffic. Re-upload your image and try again, it should work.`
+      );
     }
   }
 };
@@ -164,7 +188,18 @@ export const handleExtract = async (
 export const saveTransactionReceipt = async (name: string, receipt: string) => {
   const data = { name: name, receipt: receipt };
   const sendReceipt = await axios.post(
-    ` https://twitter-img-generator.herokuapp.com/design/receipt/`,
+    `https://twitter-img-generator.herokuapp.com/design/receipt/`,
     data
   );
+};
+
+export const updateRealVoteCount = async () => {
+  await axios.post("https://twitter-img-generator.herokuapp.com/design/realCount/");
+};
+
+export const getRealVoteCount = async () => {
+  const realCount = await axios.get(
+    "https://twitter-img-generator.herokuapp.com/design/getRealCount/"
+  );
+  return realCount.data.count;
 };
