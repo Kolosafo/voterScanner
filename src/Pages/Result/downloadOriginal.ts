@@ -7,12 +7,15 @@ export const handleDownloadDesigns = (
   a.download = `Profile-Picture`;
   a.href = profilePic;
   a.click();
+  setTimeout(() => {
+    a.download = `Twitter-Banner`;
+    a.href = banner;
+    a.click();
+  }, 2000);
 
-  a.download = `Twitter-Banner`;
-  a.href = banner;
-  a.click();
-
-  a.download = `Post-Banner`;
-  a.href = post;
-  a.click();
+  setTimeout(() => {
+    a.download = `Post-Banner`;
+    a.href = post;
+    a.click();
+  }, 4000);
 };

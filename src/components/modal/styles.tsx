@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 const ModalContainer = styled.div`
-  background-color: white;
   display: flex;
   flex-basis: 100%;
   flex-direction: column;
   align-items: center;
   position: relative;
+  box-shadow: 0 0 32px rgb(0, 222, 255);
+  padding: "40px";
+  background-color: #ffffff;
 `;
 
 export const Overlay = styled.div`

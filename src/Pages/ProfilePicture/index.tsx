@@ -8,9 +8,11 @@ import { IoMdArrowBack } from "react-icons/io";
 const croppedProfilePicture: {
   url: string;
   name: string;
+  fileName: string;
 } = {
   url: "", //THIS IS A BLOB URL FOR SHOWING
   name: "",
+  fileName: "",
 };
 const ProfilePicture = () => {
   const { party } = useParams();

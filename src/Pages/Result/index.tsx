@@ -12,11 +12,19 @@ import Typewriter from "typewriter-effect";
 // import { IoMdArrowBack } from "react-icons/bs";
 import { IoMdArrowBack } from "react-icons/io";
 import { ColorRing } from "react-loader-spinner";
+import { LoaderDiv } from "./style";
 const Result = () => {
   const { party } = useParams();
   const [width, setWidth] = useState<number>(window.innerWidth);
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<ResultType | null>(null);
+  const [paid, setPaid] = useState(false);
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setModalOpen((wasModalVisible) => !wasModalVisible);
+  };
 
   const buttonStyle = {
     width: "200px",
@@ -54,7 +62,6 @@ const Result = () => {
   };
   const navigate = useNavigate();
   useEffect(() => {
-    // console.log(croppedProfilePicture);
     setTimeout(() => {
       croppedProfilePicture.url !== "" ||
       croppedProfilePicture.url ||
@@ -128,7 +135,7 @@ const Result = () => {
                 style={{ width: isMobile ? "65%" : "20%" }}
               />
               <div style={{ display: "flex" }}>
-                <h3 style={priceStyle}>N500</h3>
+                <h3 style={priceStyle}>N250</h3>
                 <h3
                   style={{
                     opacity: "0.3",
@@ -137,7 +144,7 @@ const Result = () => {
                     fontSize: "3vw",
                   }}
                 >
-                  N2000
+                  N1000
                 </h3>
               </div>
             </div>
@@ -157,7 +164,7 @@ const Result = () => {
                 style={{ width: isMobile ? "90%" : "40%" }}
               />
               <div style={{ display: "flex" }}>
-                <h3 style={priceStyle}>N500</h3>
+                <h3 style={priceStyle}>N250</h3>
                 <h3
                   style={{
                     opacity: "0.3",
@@ -166,7 +173,7 @@ const Result = () => {
                     fontSize: "3vw",
                   }}
                 >
-                  N2000
+                  N1000
                 </h3>
               </div>
             </div>
@@ -199,6 +206,35 @@ const Result = () => {
                 </h3>
               </div>
             </div>
+            <hr style={{ width: "100%" }} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <h4 style={{ fontSize: "5vw" }}>Post 2 Design</h4>
+              <img
+                src={result.watermarked.post_3_img}
+                alt="img"
+                style={{ width: isMobile ? "90%" : "40%" }}
+              />
+              <div style={{ display: "flex" }}>
+                <h3 style={priceStyle}>N500</h3>
+                <h3
+                  style={{
+                    opacity: "0.3",
+                    textDecoration: "line-through",
+                    marginLeft: "20px",
+                    fontSize: "3vw",
+                  }}
+                >
+                  N2000
+                </h3>
+              </div>
+            </div>
           </div>
 
           <hr style={{ width: "100%" }} />
@@ -211,9 +247,30 @@ const Result = () => {
             }}
           >
             <h1>Total:</h1>
-            <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,500</h2>
+            {!paid ? (
+              <h2 style={{ color: "cyan", fontSize: "3vw" }}>N1,500</h2>
+            ) : (
+              <h2 style={{ color: "cyan", fontSize: "3vw" }}>N0</h2>
+            )}
 
-            <button style={buttonStyle}>Download Original</button>
+            {!paid ? (
+              <>
+                <button style={buttonStyle} onClick={() => toggleModal()}>
+                  Download Original
+                </button>
+                <Payment
+                  isModalVisible={isModalOpen}
+                  onBackdropClick={toggleModal}
+                  handleDownloadAll={handleDownloadAll}
+                  setPaid={setPaid}
+                />
+              </>
+            ) : (
+              <button style={buttonStyle} onClick={() => handleDownloadAll()}>
+                Free Download All
+              </button>
+            )}
+
             {/* <button onClick={handleDownloadAll}>Download All</button> */}
             <span style={{ marginTop: "15px", fontSize: "18px" }}>
               By Clicking "Download Original", you agree to our{" "}
@@ -228,15 +285,7 @@ const Result = () => {
           </div>
         </>
       ) : (
-        <div
-          style={{
-            height: "80vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-          }}
-        >
+        <LoaderDiv>
           <ColorRing
             visible={true}
             height="120"
@@ -267,7 +316,7 @@ const Result = () => {
               typewriter.pauseFor(3000).start();
             }}
           />
-        </div>
+        </LoaderDiv>
       )}
     </div>
   );

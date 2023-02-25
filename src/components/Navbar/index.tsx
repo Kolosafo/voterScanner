@@ -18,7 +18,7 @@ const NavMenu = () => {
           </li>
           <li>
             <Link to="/TOS" style={{ color: "white" }}>
-              Terms
+              Legal
             </Link>
           </li>
 
